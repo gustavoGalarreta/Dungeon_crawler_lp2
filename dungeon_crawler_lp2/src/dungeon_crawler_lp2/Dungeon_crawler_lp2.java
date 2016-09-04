@@ -17,7 +17,7 @@ public class Dungeon_crawler_lp2 {
      */
     public static void main(String[] args) {
         // TODO code application logic here
-        Maze maze = new Maze();
+        Maze maze = Maze.generateMaze();
         maze.showMaze();
     }
     
