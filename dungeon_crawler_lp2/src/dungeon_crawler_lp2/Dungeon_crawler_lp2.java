@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package dungeon_crawler_lp2;
+import Model.Maze;
 import java.math.MathContext;
 
 /**
