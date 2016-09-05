@@ -47,7 +47,7 @@ public class Game {
                 if (movement_keyboard.equals("a")) move = 4;
                 if ((5-move) == 5) System.out.println("invalid move");
                 else {
-                    state = jugar(move);
+                    state = play(move);
                     //dibujador
                     if (state == 0){
                         //clean
