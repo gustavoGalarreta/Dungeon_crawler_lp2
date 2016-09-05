@@ -13,25 +13,30 @@ public class Cell {
     //1 wall
     //0 path
     
-    int type;
-    boolean visited;
+    private int type;
+    private boolean visited;
+    private boolean start;
+    private boolean end;
+    
     public Cell(){
         type = 1;
         visited = false;
+        start = false;
+        end = false;
     }
     public void setWall(){
-        type = 1;
+        this.type = 1;
     }
     public void setUnvisited(){
-        visited = false;
+        this.visited = false;
     }
     public void setVisited(){
-        visited = true;
+        this.visited = true;
     }
     public void setPath(){
-        type = 0;
+        this.type = 0;
     }
-    public boolean isVisited(){
+    public boolean is_visited(){
         return visited;
     }
     public void showCell(){
@@ -48,5 +53,20 @@ public class Cell {
         boolean result;
         result = (type==0) ? true : false;
         return result;
+    }
+    public boolean is_start() {
+        return start;
+    }
+
+    public void set_start() {
+        this.start = true;
+    }
+
+    public boolean is_end() {
+        return end;
+    }
+
+    public void set_end() {
+        this.end = true;
     }
 }

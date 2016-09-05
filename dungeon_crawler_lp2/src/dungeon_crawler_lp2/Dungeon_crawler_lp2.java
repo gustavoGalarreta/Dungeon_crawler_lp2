@@ -4,7 +4,8 @@
  * and open the template in the editor.
  */
 package dungeon_crawler_lp2;
-import Model.Maze;
+import Model.*;
+import Controller.Game;
 import java.math.MathContext;
 
 /**
@@ -13,13 +14,9 @@ import java.math.MathContext;
  */
 public class Dungeon_crawler_lp2 {
 
-    /**
-     * @param args the command line arguments
-     */
     public static void main(String[] args) {
-        // TODO code application logic here
-        Maze maze = Maze.generateMaze();
-        maze.showMaze();
+        Game game = new Game();
+        game.init();
     }
     
 }

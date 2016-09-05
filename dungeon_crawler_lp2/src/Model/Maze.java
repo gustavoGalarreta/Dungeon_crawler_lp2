@@ -24,6 +24,10 @@ public class Maze {
     private int height;
     private int width;
     private Cell maze[][];
+    private int start_row;
+    private int start_col;
+    private int end_row;
+    private int end_col;
     //TBD start, next
     
     protected Maze(int size){
@@ -55,9 +59,9 @@ public class Maze {
 //-----------------------------------------------------------------------------//    
     //CLASS METHODS
     
-    private static int randomNumberGenerator(){
+    private static int randomNumberGenerator(int max){
         Random randomGenerator = new Random();
-        int randomValue = randomGenerator.nextInt(15);
+        int randomValue = randomGenerator.nextInt(max);
         return randomValue;
     }
 
@@ -79,7 +83,7 @@ public class Maze {
             return false;
     }
     public int[] getUnvisitedCell(int[] initCell){
-        //Integer directions[] = Maze.randomDirection();
+        //Integer directions[] = Maze.randomDirection(4);
         int[] directions = {1, 2, 3, 4};
         int validCell[] = new int[3];
         int direction, direction_fetcher = 0;
@@ -160,7 +164,7 @@ public class Maze {
     public boolean can_be_visit_this_cell(int row, int col){
         boolean result = true;
         if (these_coordinates_are_in_maze(row, col)) 
-            return !maze[row][col].visited && maze[row][col].is_path();
+            return !maze[row][col].is_visited() && maze[row][col].is_path();
         else
             return false;
     }
@@ -176,8 +180,39 @@ public class Maze {
     public void set_cell_as_a_visited(int [] validCell){
         maze[validCell[0]][validCell[1]].setVisited();
     }
+    public void set_start_maze(){
+        int start_row ,start_col;
+        Cell current_cell;
+        while(true){
+            start_row = Maze.randomNumberGenerator(height);
+            start_col= Maze.randomNumberGenerator(width);
+            current_cell = maze[start_row][start_col];
+            if (current_cell.is_path() && !current_cell.is_start() && !current_cell.is_end()){
+                current_cell.set_start();
+                setStart_row(start_row);
+                setStart_col(start_col);
+                break;
+            }
+        }
+    }
+    public void set_end_maze(){
+        int end_row, end_col;
+        Cell current_cell;
+        while(true){
+            end_row = Maze.randomNumberGenerator(height);
+            end_col= Maze.randomNumberGenerator(width);
+            current_cell = maze[end_row][end_col];
+            if (current_cell.is_path() && !current_cell.is_start() && !current_cell.is_end()){
+                current_cell.set_end();
+                setEnd_row(end_row);
+                setEnd_col(end_col);
+                break;
+            }
+        }
+    }
+    
     public static Maze generateMaze(){
-        int size = Maze.randomNumberGenerator();
+        int size = Maze.randomNumberGenerator(15);
         //int size = 3; //test
         int initCell[] = getRandomCellInMaze(), validCell[];
         //initCell[0] row   initCell[1] col
@@ -201,6 +236,62 @@ public class Maze {
                 stackCells.push(validCell);
             }
         }
+        current_maze.set_start_maze();
+        current_maze.set_end_maze();;
         return current_maze;
+    }
+
+    public int getStart_row() {
+        return start_row;
+    }
+
+    public void setStart_row(int start_row) {
+        this.start_row = start_row;
+    }
+
+    public int getStart_col() {
+        return start_col;
+    }
+
+    public void setStart_col(int start_col) {
+        this.start_col = start_col;
+    }
+
+    public int getEnd_row() {
+        return end_row;
+    }
+
+    public void setEnd_row(int end_row) {
+        this.end_row = end_row;
+    }
+
+    public int getEnd_col() {
+        return end_col;
+    }
+
+    public void setEnd_col(int end_col) {
+        this.end_col = end_col;
+    }
+    
+    public boolean is_path(int row, int col){
+        return true;
+    }
+    public boolean is_wall(int row, int col){
+        return true;
+    }
+    public boolean has_monster(int row, int col){
+        return true;
+    }
+    public boolean has_potion(int row, int col){
+        return true;
+    }        
+    public boolean is_free(int row, int col){
+        return true;
+    }
+    public boolean is_next(int row, int col){
+        return true;
+    }
+    public boolean is_prev(int row, int col){
+        return true;
     }
 }
