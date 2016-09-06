@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package Controller;
-import Model.Avatar;
+//import Model.Avatar;
 import Model.Maze;
 import Model.Maze_manager;
 import java.io.Console;
@@ -18,7 +18,7 @@ public class Game {
     private int amount_mazes;
     private ArrayList<Maze> mazes;
     private int current_maze_in_mazes;
-    private  Avatar avatar;
+    //private  Avatar avatar;
     //private Dibujador dibujador
    
     public void Game(){
@@ -72,7 +72,7 @@ public class Game {
         if (movement == 3) new_col = avatar_col + 1;
         if (movement == 4) new_col = avatar_col - 1;
         if (current_maze.is_free(new_row, new_col)){
-            avatar.move(new_row, new_col);
+            //avatar.move(new_row, new_col);
         }
         else
             if(current_maze.is_next(new_row, new_col)){
@@ -92,7 +92,7 @@ public class Game {
                         //set new current_maze
                         avatar_row = current_maze.getStart_row();
                         avatar_col = current_maze.getStart_col();
-                        avatar.set_position(avatar_row, avatar_col);
+                        //avatar.set_position(avatar_row, avatar_col);
                     }
                     else System.out.println("It's imposible to go back");
                 }
@@ -119,7 +119,7 @@ public class Game {
         Maze current_maze = mazes.get(1);
         avatar_row = current_maze.getStart_row();
         avatar_col = current_maze.getStart_col();
-        avatar = new Avatar(name, avatar_row, avatar_col, health_points);
+        //avatar = new Avatar(name, avatar_row, avatar_col, health_points);
         load_monsters();
         //dibujador
     }
